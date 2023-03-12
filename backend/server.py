@@ -4,6 +4,7 @@ from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
 import time
+import asyncio
 
 
 app = Flask(__name__)
@@ -36,15 +37,19 @@ def convert():
     else:
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        time.sleep(5)
+        #asyncio.sleep(5)
 
         text = Converter("temp/"+filename).captions()
-        time.sleep(20)
+        #asyncio.sleep(10)
         print(text)
+        os.remove("temp/"+filename)
         return text
 
+    print("Error occurred")
+    return "Error occurred"
 
-    return "hellp"
+
+
 
 
 if __name__ == "__main__":
