@@ -11,7 +11,8 @@ function App() {
   const formData = new FormData();
   formData.append("file", file[0]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       setContentContainer(false);
       if (file == "") {
@@ -38,12 +39,18 @@ function App() {
   }, [file]);
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100 border border-danger ">
-      <div>
-        <h2>Textify</h2>
-        <h5>Turning words to text</h5>
-
-        <Form onSubmit={handleSubmit}>
+    <div
+      className="container d-flex justify-content-center align-items-center vh-100   "
+      style={{ width: "50vw" }}
+    >
+      <div className="d-flex flex-column w-100">
+        <Form
+          onSubmit={handleSubmit}
+          style={{ width: "100%" }}
+          className=" justify-content-center align-items-center "
+        >
+          <h2>Textify</h2>
+          <h5>Turning words to text</h5>
           <Form.Group>
             <Form.Label>Select file</Form.Label>
 
@@ -58,7 +65,11 @@ function App() {
             </div>
           </Form.Group>
         </Form>
-        {contentContainer && <p>{text}</p>}
+        {contentContainer && (
+          <div className="d-flex justify-content-center align-items-center">
+            <p>{text}</p>
+          </div>
+        )}
       </div>
     </div>
   );
