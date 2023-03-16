@@ -57,6 +57,7 @@ function App() {
             <div className="d-flex">
               <Form.Control
                 type="file"
+                accept="audio/*"
                 onChange={(e) => setFile(e.target.files)}
               />
               <Button variant="outline-success" onClick={handleSubmit}>
@@ -65,8 +66,9 @@ function App() {
             </div>
           </Form.Group>
         </Form>
+        <br />
         {contentContainer && (
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center align-items-center border border-primary">
             <p>{text}</p>
           </div>
         )}
